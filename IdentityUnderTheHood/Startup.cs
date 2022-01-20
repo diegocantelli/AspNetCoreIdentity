@@ -23,6 +23,11 @@ namespace IdentityUnderTheHood
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication().AddCookie("MyCookieAuth", opt =>
+            {
+                //Através dessa propriedade que o asp net irá saber de qual cookie pegar as informações de autenticação
+                opt.Cookie.Name = "MyCookieAuth";
+            });
             services.AddRazorPages();
         }
 
