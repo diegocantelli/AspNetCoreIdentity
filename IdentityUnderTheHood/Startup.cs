@@ -23,7 +23,9 @@ namespace IdentityUnderTheHood
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication().AddCookie("MyCookieAuth", opt =>
+            //Necessáio especificar o nome da autenticação que será usada, pois podem existir vários handlers de autenticação
+            //configurados
+            services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", opt =>
             {
                 //Através dessa propriedade que o asp net irá saber de qual cookie pegar as informações de autenticação
                 opt.Cookie.Name = "MyCookieAuth";
@@ -50,6 +52,9 @@ namespace IdentityUnderTheHood
 
             app.UseRouting();
 
+            //Acionando o middleware de autenticação no pipeline, para que seja tratado o cookie de autenticação
+            //e autenticar o usuário através do cookie armazenado
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
