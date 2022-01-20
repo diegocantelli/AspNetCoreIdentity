@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -17,9 +19,29 @@ namespace IdentityUnderTheHood.Pages.Account
         }
 
         //Método chamado quando um post é efetuado na tela
-        public void OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
+            if (!ModelState.IsValid) return Page();
 
+            if(Credential.UserName == "Admin" && Credential.Password == "123")
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, "admin"),
+                    new Claim(ClaimTypes.Email, "admin@admin.com")
+                };
+
+                var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+                var claimsPrincipal = new ClaimsPrincipal(identity);
+
+                //SignInAsync -> irá serializar o conteúdo de claimsPrincipal, irá encriptá-lo e salvar como cookie no 
+                //contexto Http
+                await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+
+                return RedirectToPage("/Index");
+            }
+
+            return Page();
         }
     }
 
