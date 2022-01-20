@@ -15,11 +15,18 @@ namespace IdentityUnderTheHood.Pages.Account
         public void OnGet()
         {
         }
+
+        //Método chamado quando um post é efetuado na tela
+        public void OnPost()
+        {
+
+        }
     }
 
     public class Credential
     {
         [Required]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
 
         [Required]

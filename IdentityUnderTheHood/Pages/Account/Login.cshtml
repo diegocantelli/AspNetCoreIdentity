@@ -5,6 +5,7 @@
 
 <div class="container border" style="padding: 20px">
     <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
         <div class="form-group row">
             <div class="col-2">
                 <label asp-for="Credential.UserName"></label>
@@ -12,14 +13,16 @@
             <div class="col-5">
                 <input class="form-control" type="text" asp-for="Credential.UserName" />
             </div>
+            <span class="text-danger" asp-validation-for="Credential.UserName"></span>
         </div>
         <div class="form-group row">
             <div class="col-2">
                 <label asp-for="Credential.Password"></label>
             </div>
             <div class="col-5">
-                <input class="form-control" type="text" asp-for="Credential.Password" />
+                <input class="form-control" type="password" asp-for="Credential.Password" />
             </div>
+            <span class="text-danger" asp-validation-for="Credential.Password"></span>
         </div>
         <div class="form-group row">
             <div class="col-5">
