@@ -1,3 +1,5 @@
+using IdentityUnderTheHood.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -46,13 +48,16 @@ namespace IdentityUnderTheHood
                 options.AddPolicy("HrManagerOnly",
                     policy => policy
                         .RequireClaim("Department", "HR")
-                        .RequireClaim("Manager"));
+                        .RequireClaim("Manager")
+                        .Requirements.Add(new HRManagementsProbationRequirement(3)));
 
                 //Cria uma policy chamada MustBelongToHrDepartment que deve conter uma claim Chamada Department, que deve ter o valor HR
                 //No caso deste exemplo as claims estão sendo setadas manualmento no método OnPostAsync em login.cshtml.cs
                 options.AddPolicy("MustBelongToHrDepartment",
                     policy => policy.RequireClaim("Department", "HR"));
             });
+
+            services.AddSingleton<IAuthorizationHandler, HRManagementsProbationRequirementHandler>();
 
             services.AddRazorPages();
         }

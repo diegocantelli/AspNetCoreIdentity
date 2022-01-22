@@ -31,6 +31,8 @@ namespace IdentityUnderTheHood.Pages.Account
                     new Claim(ClaimTypes.Email, "admin@admin.com"),
                     new Claim("Admin", "true"),
                     new Claim("HrManagerOnly", "true"),
+                    new Claim("Manager", "true"),
+                    new Claim("EmploymentDate", "2021-09-01"),
                     //Com esta claim será possível acessar a página de HumanResource
                     new Claim("Department", "HR")
                 };
