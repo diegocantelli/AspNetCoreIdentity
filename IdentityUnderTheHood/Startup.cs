@@ -33,6 +33,8 @@ namespace IdentityUnderTheHood
                 //Definindo o local da página de login para que possa ocorrer o redirecionamento em caso de não estar
                 //autenticado
                 opt.LoginPath = "/Account/Login";
+
+                opt.AccessDeniedPath = "/Account/AccessDenied";
             });
 
             services.AddAuthorization(options =>
