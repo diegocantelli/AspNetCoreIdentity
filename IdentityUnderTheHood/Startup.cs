@@ -34,6 +34,15 @@ namespace IdentityUnderTheHood
                 //autenticado
                 opt.LoginPath = "/Account/Login";
             });
+
+            services.AddAuthorization(options =>
+            {
+                //Cria uma policy chamada MustBelongToHrDepartment que deve conter uma claim Chamada Department, que deve ter o valor HR
+                //No caso deste exemplo as claims estão sendo setadas manualmento no método OnPostAsync em login.cshtml.cs
+                options.AddPolicy("MustBelongToHrDepartment",
+                    policy => policy.RequireClaim("Department", "HR"));
+            });
+
             services.AddRazorPages();
         }
 
