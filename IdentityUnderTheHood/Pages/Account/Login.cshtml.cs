@@ -40,9 +40,15 @@ namespace IdentityUnderTheHood.Pages.Account
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 var claimsPrincipal = new ClaimsPrincipal(identity);
 
+                var autProperties = new AuthenticationProperties
+                {
+                    //Define se o cookie será persistente ou não
+                    IsPersistent = Credential.RememberMe
+                };
+
                 //SignInAsync -> irá serializar o conteúdo de claimsPrincipal, irá encriptá-lo e salvar como cookie no 
                 //contexto Http
-                await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+                await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal, autProperties);
 
                 return RedirectToPage("/Index");
             }
@@ -60,5 +66,8 @@ namespace IdentityUnderTheHood.Pages.Account
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Display(Name = "Remember Me")]
+        public bool RememberMe { get; set; }
     }
 }
