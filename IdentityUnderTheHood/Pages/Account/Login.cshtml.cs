@@ -29,7 +29,7 @@ namespace IdentityUnderTheHood.Pages.Account
                 {
                     new Claim(ClaimTypes.Name, "admin"),
                     new Claim(ClaimTypes.Email, "admin@admin.com"),
-
+                    new Claim("Admin", "true"),
                     //Com esta claim será possível acessar a página de HumanResource
                     new Claim("Department", "HR")
                 };
