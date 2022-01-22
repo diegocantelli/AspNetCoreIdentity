@@ -29,6 +29,10 @@ namespace IdentityUnderTheHood
             {
                 //Através dessa propriedade que o asp net irá saber de qual cookie pegar as informações de autenticação
                 opt.Cookie.Name = "MyCookieAuth";
+
+                //Definindo o local da página de login para que possa ocorrer o redirecionamento em caso de não estar
+                //autenticado
+                opt.LoginPath = "/Account/Login";
             });
             services.AddRazorPages();
         }
