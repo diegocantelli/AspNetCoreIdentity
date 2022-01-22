@@ -37,6 +37,9 @@ namespace IdentityUnderTheHood
                 opt.LoginPath = "/Account/Login";
 
                 opt.AccessDeniedPath = "/Account/AccessDenied";
+
+                //Definindo o tempo de expiração do cookie
+                opt.Cookie.Expiration = TimeSpan.FromMinutes(30);
             });
 
             services.AddAuthorization(options =>
