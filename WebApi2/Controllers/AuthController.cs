@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace WebApi2.Controllers
 {
@@ -12,6 +13,13 @@ namespace WebApi2.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        private readonly IConfiguration _configuration;
+
+        public AuthController(IConfiguration configuration )
+        {
+            _configuration = configuration;
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] Credential credential)
         {
@@ -33,12 +41,27 @@ namespace WebApi2.Controllers
 
                 return Ok(new
                 {
-                    access_token = "",
+                    access_token = CreateToken(claims, expiresAt),
                     expires_at = expiresAt
                 });
             }
             ModelState.AddModelError("Unauthorized","You're not authorized to access this resource.");
             return Unauthorized(ModelState);
+        }
+
+        private string CreateToken(IEnumerable<Claim> claims, DateTime expiresAt)
+        {
+            var secretKey = Encoding.ASCII.GetBytes(_configuration.GetValue<string>("Secret"));
+            var jwt = new JwtSecurityToken(
+                claims: claims,
+                notBefore: DateTime.UtcNow,
+                expires: expiresAt,
+                signingCredentials: new SigningCredentials(
+                    new SymmetricSecurityKey(secretKey),
+                    SecurityAlgorithms.HmacSha256Signature)
+                );
+
+            return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
     }
     public class Credential
