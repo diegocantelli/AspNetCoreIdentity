@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityUnderTheHood", "Ide
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi2", "WebApi2\WebApi2.csproj", "{70FE8760-EE17-4E1E-AF60-E2AC4AEE4559}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.Identity", "WebApp.Identity\WebApp.Identity.csproj", "{23BDF096-3996-4031-AC62-A9AC58A07C52}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{70FE8760-EE17-4E1E-AF60-E2AC4AEE4559}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70FE8760-EE17-4E1E-AF60-E2AC4AEE4559}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70FE8760-EE17-4E1E-AF60-E2AC4AEE4559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23BDF096-3996-4031-AC62-A9AC58A07C52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23BDF096-3996-4031-AC62-A9AC58A07C52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23BDF096-3996-4031-AC62-A9AC58A07C52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23BDF096-3996-4031-AC62-A9AC58A07C52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
