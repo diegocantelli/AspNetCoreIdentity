@@ -27,7 +27,7 @@ namespace WebApi2.Controllers
         [HttpGet]
 
         //Irá usar o middleware que estiver configurado no pipeline de autenticação na classe startup
-        [Authorize]
+        [Authorize(Policy = "AdminOnly")]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();

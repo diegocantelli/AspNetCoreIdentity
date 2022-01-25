@@ -49,6 +49,16 @@ namespace WebApi2
                     };
                 });
 
+            services.AddAuthorization(options =>
+            {
+                //Irá buscar com base nas claims informadas em AuthController se possui a claim admin para poder
+                //acessar os endpoints que necessitam desta policy
+                options.AddPolicy("AdminOnly", policy => 
+                {
+                    policy.RequireClaim("Admin");
+                });
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

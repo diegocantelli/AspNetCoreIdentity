@@ -29,7 +29,7 @@ namespace WebApi2.Controllers
                 {
                     new Claim(ClaimTypes.Name, "admin"),
                     new Claim(ClaimTypes.Email, "admin@admin.com"),
-                    new Claim("Admin", "true"),
+                    //new Claim("Admin", "true"),
                     new Claim("HrManagerOnly", "true"),
                     new Claim("Manager", "true"),
                     new Claim("EmploymentDate", "2021-09-01"),
