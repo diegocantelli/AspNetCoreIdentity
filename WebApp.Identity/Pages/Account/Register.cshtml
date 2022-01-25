@@ -6,7 +6,7 @@
 <h3>User Registration</h3>
 <div class="container border" style="padding: 20px">
     <form method="post">
-        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="text-danger" asp-validation-summary="All"></div>
         <div class="form-group row">
             <div class="col-2">
                 <label asp-for="RegisterViewModel.Email"></label>
@@ -27,7 +27,7 @@
         </div>
         <div class="form-group row">
             <div class="col-5">
-                <input class="btn btn-primary" type="submit" value="Register"/>
+                <input class="btn btn-primary" type="submit" value="Register" />
             </div>
         </div>
     </form>
