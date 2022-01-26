@@ -42,10 +42,12 @@ namespace WebApp.Identity
 
                 //Não pode existir emails duplicados
                 options.User.RequireUniqueEmail = true;
+                options.SignIn.RequireConfirmedEmail = true;
 
 
             })
-              .AddEntityFrameworkStores<ApplicationDbContext>();
+              .AddEntityFrameworkStores<ApplicationDbContext>()
+              .AddDefaultTokenProviders(); //utilizado para gerar o token de confirmação de email
 
             services.ConfigureApplicationCookie(options =>
             {
